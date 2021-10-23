@@ -8,16 +8,15 @@ const productSchema = mongoose.Schema(
     },
     name: {
       type: String,
-      required: true,
+      required: "Name is required",
     },
     discount: {
       type: Number,
-      required: true,
       default: 0,
     },
     price: {
       type: Number,
-      required: true,
+      required: "Price is required",
       default: 0,
     },
     reviewStars: {
