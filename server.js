@@ -29,25 +29,12 @@ db.once("open", () => {
   console.log("Connected successfully");
 });
 
-// Routes for the resources.
-app.post("/add_user", async (request, response) => {
-  const user = new userModel(request.body);
-
-  try {
-    await user.save();
-    response.send(user);
-  } catch (error) {
-    response.status(500).send(error);
-  }
-});
-
-app.get("/users", async (request, response) => {
-  const users = await userModel.find({});
-
-  try {
-    response.send(users);
-  } catch (error) {
-    response.status(500).send(error);
+app.use((err, req, res, next) => {
+  if (err.name === "UnauthorizedError") {
+    res.status(401).json({ error: err.name + ": " + err.message });
+  } else if (err) {
+    res.status(400).json({ error: err.name + ": " + err.message });
+    console.log(err);
   }
 });
 
