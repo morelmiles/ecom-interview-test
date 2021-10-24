@@ -1,6 +1,4 @@
 const Product = require("../models/product.model");
-const errorHandler = require("./../helpers/errorFormatter");
-const extend = require("lodash/extend");
 
 // getProduct fetches a single product from the database
 const getProduct = (req, res) => {
