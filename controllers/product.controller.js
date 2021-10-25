@@ -1,5 +1,31 @@
 const Product = require("../models/product.model");
 
+//createProduct adds a new product to the database
+const createProduct = (req, res) => {
+  const newProduct = new Product({
+    description: req.body.description,
+    name: req.body.name,
+    discount: req.body.discount,
+    price: req.body.price,
+    image: req.body.image,
+    reviewStars: req.body.reviewStars,
+  });
+
+  newProduct.save((err, product) => {
+    if (err) {
+      return res.status(500).json({
+        ok: false,
+        err,
+      });
+    }
+
+    return res.status(201).json({
+      ok: true,
+      product,
+    });
+  });
+};
+
 // getProduct fetches a single product from the database
 const getProduct = (req, res) => {
   const { productId } = req.params;
@@ -35,32 +61,6 @@ const getProducts = (req, res) => {
         products,
       });
     });
-};
-
-//createProduct adds a new product to the database
-const createProduct = (req, res) => {
-  const newProduct = new Product({
-    description: req.body.description,
-    name: req.body.name,
-    discount: req.body.discount,
-    price: req.body.price,
-    image: req.body.image,
-    reviewStars: req.body.reviewStars,
-  });
-
-  newProduct.save((err, product) => {
-    if (err) {
-      return res.status(500).json({
-        ok: false,
-        err,
-      });
-    }
-
-    return res.status(201).json({
-      ok: true,
-      product,
-    });
-  });
 };
 
 //updateProduct updates a product in the database by it's id
