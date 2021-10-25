@@ -40,15 +40,12 @@ const getProducts = (req, res) => {
 //createProduct adds a new product to the database
 const createProduct = (req, res) => {
   const newProduct = new Product({
-    code: req.body.code,
-    name: req.body.name,
-    excerpt: req.body.excerpt,
     description: req.body.description,
+    name: req.body.name,
+    discount: req.body.discount,
     price: req.body.price,
-    stock: req.body.stock,
     image: req.body.image,
-    category: req.body.category,
-    status: req.body.status,
+    reviewStars: req.body.reviewStars,
   });
 
   newProduct.save((err, product) => {
