@@ -86,3 +86,5 @@ const deleteRole = (req, res) => {
     });
   });
 };
+
+export default { getRole, getRoles, createRole, updateRole, deleteRole };
