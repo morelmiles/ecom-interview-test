@@ -107,3 +107,11 @@ const deleteProduct = (req, res) => {
     });
   });
 };
+
+export default {
+  getProduct,
+  getProducts,
+  createProduct,
+  updateProduct,
+  deleteProduct,
+};
