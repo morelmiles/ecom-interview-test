@@ -8,7 +8,7 @@ const createBlog = (req, res) => {
     createdAt: req.body.createdAt,
   });
 
-  console.log(newBlog);
+  // console.log(newBlog);
   newBlog.save((err, blog) => {
     if (err) {
       return res.status(500).json({
