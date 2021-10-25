@@ -4,11 +4,11 @@ const ClientSchema = new mongoose.Schema(
   {
     displayName: {
       type: String,
-      required: true,
+      required: " Name is required",
     },
     address: {
       type: String,
-      required: false,
+      required: true,
     },
     phone: {
       type: String,
