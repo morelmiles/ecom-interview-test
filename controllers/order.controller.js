@@ -1,5 +1,5 @@
-const Order = require("../models/order.model");
-const Product = require("./../models/product.model");
+const Order = require("../models/Order");
+const Product = require("../models/Product");
 
 const getOrders = (req, res) => {
   Order.find({})
