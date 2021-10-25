@@ -18,6 +18,10 @@ const ProductSchema = mongoose.Schema(
       required: "Price is required",
       default: 0,
     },
+    image: {
+      type: String,
+      required: "Image is required",
+    },
     reviewStars: {
       type: Number,
       default: 0,
