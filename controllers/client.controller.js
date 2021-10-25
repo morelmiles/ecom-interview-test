@@ -1,5 +1,29 @@
 const Client = require("../models/Client");
 
+const createClient = (req, res) => {
+  const newClient = new Client({
+    displayName: req.body.displayName,
+    address: req.body.address,
+    phone: req.body.phone,
+    email: req.body.email,
+    status: req.body.status,
+  });
+
+  newClient.save((err, client) => {
+    if (err) {
+      return res.status(500).json({
+        ok: false,
+        err,
+      });
+    }
+
+    return res.status(201).json({
+      ok: true,
+      client,
+    });
+  });
+};
+
 const getClients = (req, res) => {
   Client.find({}).exec((err, clients) => {
     if (err) {
@@ -25,30 +49,6 @@ const getClient = (req, res) => {
       });
     }
     res.json({
-      ok: true,
-      client,
-    });
-  });
-};
-
-const createClient = (req, res) => {
-  const newClient = new Client({
-    displayName: req.body.displayName,
-    address: req.body.address,
-    phone: req.body.phone,
-    email: req.body.email,
-    status: req.body.status,
-  });
-
-  newClient.save((err, client) => {
-    if (err) {
-      return res.status(500).json({
-        ok: false,
-        err,
-      });
-    }
-
-    return res.status(201).json({
       ok: true,
       client,
     });
