@@ -84,6 +84,24 @@ const deleteOrder = (req, res) => {
   });
 };
 
+const updateOrder = (req, res) => {
+  const { orderId } = req.params;
+
+  Order.findByIdAndUpdate(orderId, req.body, { new: true }, (err, order) => {
+    if (err) {
+      return res.status(500).json({
+        ok: false,
+        err,
+      });
+    }
+
+    return res.status(201).json({
+      ok: true,
+      order,
+    });
+  });
+};
+
 const validateStock = (products, cb) => {
   const products_id = [];
 
@@ -120,4 +138,11 @@ const validateStock = (products, cb) => {
     });
 };
 
-export default { getOrders, getOrder, createOrder, deleteOrder, validateStock };
+export default {
+  getOrders,
+  getOrder,
+  createOrder,
+  deleteOrder,
+  updateOrder,
+  validateStock,
+};
