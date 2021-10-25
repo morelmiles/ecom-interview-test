@@ -4,7 +4,7 @@
   "description": "A test e-comerce application",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js"
+    "dev": "nodemon server.js"
   },
   "repository": "https://github.com/morelmiles/ecom-interview-test.git",
   "author": "Luigi Morel <morelmiles@gmail.com>",
