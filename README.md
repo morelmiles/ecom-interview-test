@@ -8,4 +8,4 @@ A test for a position
 - Add swagger for documentation
 - Integrate with the front-end
 - Write tests
-- Add logging
+  [x] Add logging
