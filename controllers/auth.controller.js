@@ -35,7 +35,6 @@ const requireSignin = expressJwt({
   secret: process.env.JWT_SECRET,
   userProperty: "auth",
 });
-export default { signin, signout, requireSignin, hasAuthorization };
 
 const hasAuthorization = (req, res, next) => {
   const authorized = req.profile && req.auth && req.profile._id == req.auth._id;
@@ -46,3 +45,5 @@ const hasAuthorization = (req, res, next) => {
   }
   next();
 };
+
+export default { signin, signout, requireSignin, hasAuthorization };
