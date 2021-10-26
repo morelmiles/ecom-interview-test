@@ -1,11 +1,24 @@
 const express = require("express");
-const categoryCtrl = require("../controllers.controller");
+const categoryCtrl = require("../controllers/category.controller");
 const router = express.Router();
 
 //Routes for the category model
-router.route("/").post(categoryCtrl.createClient);
-router.route("/").get(categoryCtrl.getClients);
+router.get("/", (req, res) => {
+  categoryCtrl.createCategory;
+});
 
-router.route("/:categoryId").get(categoryCtrl.getClient);
-router.route("/:categoryId").put(categoryCtrl.updateClient);
-router.route("/:categoryId").delete(categoryCtrl.deleteClient);
+router.get("/:categoryId", (req, res) => {
+  categoryCtrl.getCategory;
+});
+
+router.get("/", (req, res) => {
+  categoryCtrl.getCategories;
+});
+
+router.put("/:categoryId", (req, res) => {
+  blogCtrl.updateBlog;
+});
+
+router.delete("/:categoryId", (req, res) => {
+  categoryCtrl.deleteCategory;
+});

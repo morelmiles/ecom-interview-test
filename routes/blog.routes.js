@@ -3,9 +3,22 @@ const blogCtrl = require("../controllers/blog.controller");
 const router = express.Router();
 
 //Routes for the blog model
-router.route("/").post(blogCtrl.createBlog);
-router.route("/").get(blogCtrl.getBlogs);
+router.post("/", (req, res) => {
+  blogCtrl.createBlog;
+});
 
-router.route("/:blogId").get(blogCtrl.getBlog);
-router.route("/:blogId").put(blogCtrl.updateBlog);
-router.route("/:blogId").delete(blogCtrl.deleteBlog);
+router.get("/:blogId", (req, res) => {
+  blogCtrl.getBlog;
+});
+
+router.get("/", (req, res) => {
+  blogCtrl.getBlogs;
+});
+
+router.put("/:blogId", (req, res) => {
+  blogCtrl.updateBlog;
+});
+
+router.delete("/:blogId", (req, res) => {
+  blogCtrl.updateBlog;
+});
