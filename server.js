@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
@@ -12,8 +14,6 @@ const categoryRoutes = require("./routes/category.routes");
 const clientRoutes = require("./routes/client.routes");
 const roleRoutes = require("./routes/role.routes");
 const userRoutes = require("./routes/user.routes");
-
-require("dotenv").config();
 
 const app = express();
 
@@ -39,8 +39,8 @@ db.once("open", () => {
 });
 
 //Routes for the different resources
-app.use("/api/v1/orders", orderRoutes);
-app.use("/api/v1/products", productRoutes);
+app.use("/api/v1/order", orderRoutes);
+app.use("/api/v1/product", productRoutes);
 app.use("/api/v1/blog", blogRoutes);
 app.use("/api/v1/category", categoryRoutes);
 app.use("/api/v1/client", clientRoutes);
