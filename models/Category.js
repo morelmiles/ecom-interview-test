@@ -11,7 +11,7 @@ const CategorySchema = new mongoose.Schema(
       type: String,
       required: false,
     },
-    status: {
+    inStock: {
       type: Boolean,
       default: true,
     },
