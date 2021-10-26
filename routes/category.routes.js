@@ -22,3 +22,5 @@ router.put("/:categoryId", (req, res) => {
 router.delete("/:categoryId", (req, res) => {
   categoryCtrl.deleteCategory;
 });
+
+module.exports = router;

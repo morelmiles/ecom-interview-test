@@ -22,3 +22,5 @@ router.put("/:blogId", (req, res) => {
 router.delete("/:blogId", (req, res) => {
   blogCtrl.updateBlog;
 });
+
+module.exports = router;

@@ -1,6 +1,7 @@
 const express = require("express");
 const authCtrl = require("./../controllers/auth.controller");
 const userCtrl = require("./../controllers/user.controller");
+
 const router = express.Router();
 
 //Routes for the users
@@ -28,3 +29,5 @@ router.delete("/:userId", (req, res) => {
   authCtrl.requireSignin;
   authCtrl.hasAuthorization;
 });
+
+module.exports = router;

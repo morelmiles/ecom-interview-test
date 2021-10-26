@@ -1,5 +1,6 @@
 const express = require("express");
 const roleCtrl = require("../controllers/role.controller");
+
 const router = express.Router();
 
 //Routes for the role model
@@ -22,3 +23,5 @@ router.put("/:roleId", (req, res) => {
 router.delete("/:roleId", (req, res) => {
   roleCtrl.deleteRole;
 });
+
+module.exports = router;

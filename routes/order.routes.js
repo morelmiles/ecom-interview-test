@@ -1,5 +1,6 @@
 const express = require("express");
 const orderCtrl = require("../controllers/order.controller");
+
 const router = express.Router();
 
 //Routes for the Order model
@@ -21,3 +22,5 @@ router.put("/:orderId", (req, res) => {
 router.delete("/:orderId", (req, res) => {
   orderCtrl.deleteOrder;
 });
+
+module.exports = router;

@@ -1,5 +1,6 @@
 const express = require("express");
 const productCtrl = require("../controllers/product.controller");
+
 const router = express.Router();
 
 //Routes for the Produc model
@@ -22,3 +23,5 @@ router.put("/:productId", (req, res) => {
 router.delete("/:productId", (req, res) => {
   productCtrl.deleteProduct;
 });
+
+module.exports = router;
