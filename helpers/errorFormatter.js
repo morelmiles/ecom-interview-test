@@ -16,7 +16,6 @@ const getErrorMessage = (err) => {
   }
   return message;
 };
-export default { getErrorMessage };
 
 const getUniqueErrorMessage = (err) => {
   let output;
@@ -34,3 +33,5 @@ const getUniqueErrorMessage = (err) => {
   }
   return output;
 };
+
+module.exports = { getErrorMessage };
