@@ -3,9 +3,22 @@ const productCtrl = require("../controllers/product.controller");
 const router = express.Router();
 
 //Routes for the Produc model
-router.route("/").post(productCtrl.createProduct);
-router.route("/").get(productCtrl.getProducts);
+router.post("/", (req, res) => {
+  productCtrl.createProduct;
+});
 
-router.route("/:productId").get(productCtrl.getProduct);
-router.route("/:productId").put(productCtrl.updateProduct);
-router.route("/:productId").delete(productCtrl.deleteProduct);
+router.get("/", (req, res) => {
+  productCtrl.getProducts;
+});
+
+router.get("/:productId", (req, res) => {
+  productCtrl.getProduct;
+});
+
+router.put("/:productId", (req, res) => {
+  productCtrl.updateProduct;
+});
+
+router.delete("/:productId", (req, res) => {
+  productCtrl.deleteProduct;
+});
