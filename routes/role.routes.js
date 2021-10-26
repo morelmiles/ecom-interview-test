@@ -3,9 +3,22 @@ const roleCtrl = require("../controllers/role.controller");
 const router = express.Router();
 
 //Routes for the role model
-router.route("/").post(clientCtrl.createClient);
-router.route("/").get(clientCtrl.getClients);
+router.post("/", (req, res) => {
+  roleCtrl.createRole;
+});
 
-router.route("/:clientId").get(clientCtrl.getClient);
-router.route("/:clientId").put(clientCtrl.updateClient);
-router.route("/:clientId").delete(clientCtrl.deleteClient);
+router.get("/", (req, res) => {
+  roleCtrl.getRoles;
+});
+
+router.get("/:roleId", (req, res) => {
+  roleCtrl.getRole;
+});
+
+router.put("/:roleId", (req, res) => {
+  roleCtrl.updateRole;
+});
+
+router.delete("/:roleId", (req, res) => {
+  roleCtrl.deleteRole;
+});
