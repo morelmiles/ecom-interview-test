@@ -3,9 +3,21 @@ const orderCtrl = require("../controllers/order.controller");
 const router = express.Router();
 
 //Routes for the Order model
-router.route("/").post(orderCtrl.createOrder);
-router.route("/").get(orderCtrl.getOrders);
+router.post("/", (req, res) => {
+  orderCtrl.createOrder;
+});
 
-router.route("/:orderId").get(orderCtrl.getOrder);
-router.route("/:orderId").put(orderCtrl.updateOrder);
-router.route("/:orderId").delete(orderCtrl.deleteOrder);
+router.get("/", (req, res) => {
+  orderCtrl.getOrders;
+});
+
+router.get("/:orderId", (req, res) => {
+  orderCtrl.getOrders;
+});
+router.put("/:orderId", (req, res) => {
+  orderCtrl.updateOrder;
+});
+
+router.delete("/:orderId", (req, res) => {
+  orderCtrl.deleteOrder;
+});
