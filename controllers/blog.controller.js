@@ -6,6 +6,8 @@ const Controller = {};
 Controller.createBlog = (req, res) => {
   const newBlog = new Blog({
     title: req.body.title,
+    body: req.body.body,
+    coverImage: req.body.coverImage,
     tags: req.body.tags,
     createdAt: req.body.createdAt,
   });
