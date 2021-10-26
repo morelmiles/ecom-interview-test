@@ -25,6 +25,7 @@ app.use(express.json({ extended: true }));
 app.use(compress());
 app.use(morgan("dev"));
 
+//Database connector
 mongoose.Promise = global.Promise;
 
 mongoose.connect(process.env.MONGO_URI, {
