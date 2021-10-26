@@ -4,15 +4,27 @@ const userCtrl = require("./../controllers/user.controller");
 const router = express.Router();
 
 //Routes for the users
-router.route("/").post(userCtrl.createUser);
-router.route("/").get(userCtrl.listUsers);
-router.route("/:userId").get(userCtrl.readUserById);
-router.route("/:userId").put(userCtrl.updateUserById);
-router.route("/:userId").delete(userCtrl.deleteUserById);
+router.post("/", (req, res) => {
+  userCtrl.createUser;
+});
 
-//Require authorization so as to do the following operations
-router
-  .route("/:userId")
-  .get(authCtrl.requireSignin, userCtrl.read)
-  .put(authCtrl.requireSignin, authCtrl.hasAuthorization, userCtrl.update)
-  .delete(authCtrl.requireSignin, authCtrl.hasAuthorization, userCtrl.remove);
+router.get("/:userId", (req, res) => {
+  authCtrl.requireSignin;
+  userCtrl.readUserById;
+});
+
+router.put("/:userId", (req, res) => {
+  authCtrl.requireSignin;
+  authCtrl.hasAuthorization;
+  userCtrl.updateUserById;
+});
+
+router.get("/", (req, res) => {
+  userCtrl.listUsers;
+});
+
+router.delete("/:userId", (req, res) => {
+  userCtrl.deleteUserById;
+  authCtrl.requireSignin;
+  authCtrl.hasAuthorization;
+});
