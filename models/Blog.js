@@ -20,4 +20,4 @@ const BlogSchema = new mongoose.Schema(
   }
 );
 
-module.exports = mongoose.Model("Blog", BlogSchema);
+module.exports = mongoose.model("Blog", BlogSchema);
