@@ -6,7 +6,7 @@ Controller.createCategory = (req, res) => {
   const newCategory = new Category({
     name: req.body.name,
     description: req.body.description,
-    status: req.body.status,
+    inStock: req.body.inStock,
   });
 
   // console.log(newCategory);
@@ -97,4 +97,4 @@ Controller.deleteCategory = (req, res) => {
   });
 };
 
-module.exports = Controller
+module.exports = Controller;
