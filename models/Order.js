@@ -3,13 +3,13 @@ const mongoose = require("mongoose");
 const OrderSchema = new mongoose.Schema(
   {
     client: {
-      type: Schema.Types.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: "Client",
     },
     orderItems: [
       {
         product: {
-          type: Schema.Types.ObjectId,
+          type: mongoose.Schema.Types.ObjectId,
           ref: "Product",
         },
         qty: Number,
