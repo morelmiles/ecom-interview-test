@@ -1,7 +1,9 @@
 const Blog = require("../models/Blog");
 
+const Controller = {};
+
 //Creates and saves a new blog to the database
-const createBlog = (req, res) => {
+Controller.createBlog = (req, res) => {
   const newBlog = new Blog({
     title: req.body.title,
     tags: req.body.tags,
@@ -26,7 +28,7 @@ const createBlog = (req, res) => {
 
 //Gets a single blog from the database
 
-const getBlog = (req, res) => {
+Controller.getBlog = (req, res) => {
   const { blogId } = req.params;
 
   Blog.findById(blogId).exec((err, blog) => {
@@ -45,7 +47,7 @@ const getBlog = (req, res) => {
 };
 
 // Gets many blog posts from the DB
-const getBlogs = (req, res) => {
+Controller.getBlogs = (req, res) => {
   Blog.find({}).exec((err, blogs) => {
     if (err) {
       return res.status(500).json({
@@ -62,7 +64,7 @@ const getBlogs = (req, res) => {
 };
 
 //Updates a single blog in the database
-const updateBlog = (req, res) => {
+Controller.updateBlog = (req, res) => {
   const { blogId } = req.params;
 
   Blog.findByIdAndUpdate(blogId, req.body, { new: true }, (err, blog) => {
@@ -81,7 +83,7 @@ const updateBlog = (req, res) => {
 };
 
 //Deletes a single blog from the database
-const deleteBlog = (req, res) => {
+Controller.deleteBlog = (req, res) => {
   const { blogId } = req.params;
 
   Blog.findByIdAndRemove(blogId, (err, blog) => {
@@ -99,4 +101,4 @@ const deleteBlog = (req, res) => {
   });
 };
 
-export default { createBlog, getBlog, getBlogs, updateBlog, deleteBlog };
+module.exports = Controller;

@@ -1,7 +1,9 @@
-const Product = require("../models/product.model");
+const Product = require("../models/Product");
+
+const Controller = {};
 
 //createProduct adds a new product to the database
-const createProduct = (req, res) => {
+Controller.createProduct = (req, res) => {
   const newProduct = new Product({
     description: req.body.description,
     name: req.body.name,
@@ -27,7 +29,7 @@ const createProduct = (req, res) => {
 };
 
 // getProduct fetches a single product from the database
-const getProduct = (req, res) => {
+Controller.getProduct = (req, res) => {
   const { productId } = req.params;
   Product.findById(productId)
     .populate("category")
@@ -46,7 +48,7 @@ const getProduct = (req, res) => {
 };
 
 //getProducts returns all products
-const getProducts = (req, res) => {
+Controller.getProducts = (req, res) => {
   Product.find({})
     .populate("category")
     .exec((err, products) => {
@@ -64,7 +66,7 @@ const getProducts = (req, res) => {
 };
 
 //updateProduct updates a product in the database by it's id
-const updateProduct = (req, res) => {
+Controller.updateProduct = (req, res) => {
   const { productId } = req.params;
 
   Product.findByIdAndUpdate(
@@ -88,7 +90,7 @@ const updateProduct = (req, res) => {
 };
 
 // deleteProduct deletes a product from the database by it's ID
-const deleteProduct = (req, res) => {
+Controller.deleteProduct = (req, res) => {
   const { productId } = req.params;
   Product.findByIdAndRemove(productId, (err, product) => {
     if (err) {
@@ -105,10 +107,4 @@ const deleteProduct = (req, res) => {
   });
 };
 
-export default {
-  getProduct,
-  getProducts,
-  createProduct,
-  updateProduct,
-  deleteProduct,
-};
+module.exports = Controller;

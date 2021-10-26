@@ -2,8 +2,10 @@ const User = require("../models/user.model");
 const errorHandler = require("./../helpers/errorFormatter");
 const extend = require("lodash/extend");
 
+const Controller = {};
+
 //Create the user and save the details to the database
-const createUser = async (req, res) => {
+Controller.createUser = async (req, res) => {
   const user = new User(req.body);
   try {
     await user.save();
@@ -15,19 +17,8 @@ const createUser = async (req, res) => {
   }
 };
 
-/**
- * Please note that not all of these routes should be customer facing,
- * Are for the admin side
- * @param {*} req
- * @param {*} res
- * @param {*} next
- * @param {*} id
- * @returns
- */
-
 //List a user by the ID
-
-const userByID = async (req, res, next, id) => {
+Controller.userByID = async (req, res, next, id) => {
   try {
     let user = await User.findById(id);
     if (!user)
@@ -42,7 +33,7 @@ const userByID = async (req, res, next, id) => {
 };
 
 // List all the users in the database
-const listUsers = async (req, res) => {
+Controller.listUsers = async (req, res) => {
   try {
     let users = await User.find().select(
       "name email address apartment country postCode phoneNumber email updated created"
@@ -57,14 +48,14 @@ const listUsers = async (req, res) => {
 
 // Read the user by an ID
 //Do not return the salt and the hashed password
-const readUserById = (req, res) => {
+Controller.readUserById = (req, res) => {
   req.profile.hashed_password = undefined;
   req.profile.salt = undefined;
   return res.json(req.profile);
 };
 
 // Update a single user
-const updateUserById = async (req, res) => {
+Controller.updateUserById = async (req, res) => {
   try {
     let user = req.profile;
     user = extend(user, req.body);
@@ -81,7 +72,7 @@ const updateUserById = async (req, res) => {
 };
 
 //Delete user from the database
-const deleteUserById = async (req, res) => {
+Controller.deleteUserById = async (req, res) => {
   try {
     let user = req.profile;
     let deletedUser = await user.remove();
@@ -95,11 +86,4 @@ const deleteUserById = async (req, res) => {
   }
 };
 
-export default {
-  createUser,
-  userByID,
-  listUsers,
-  readUserById,
-  updateUserById,
-  deleteUserById,
-};
+module.exports = Controller;

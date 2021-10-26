@@ -1,6 +1,8 @@
 const Role = require("../models/Role");
 
-const getRole = (req, res) => {
+const Controller = {};
+
+Controller.getRole = (req, res) => {
   const { roleId } = req.params;
   Role.findById(roleId).exec((err, role) => {
     if (err) {
@@ -16,7 +18,7 @@ const getRole = (req, res) => {
   });
 };
 
-const getRoles = (req, res) => {
+Controller.getRoles = (req, res) => {
   Role.find({}).exec((err, roles) => {
     if (err) {
       return res.status(500).json({
@@ -31,7 +33,7 @@ const getRoles = (req, res) => {
   });
 };
 
-const createRole = (req, res) => {
+Controller.createRole = (req, res) => {
   const newRole = new Role({
     name: req.body.name,
     status: req.body.status,
@@ -52,7 +54,7 @@ const createRole = (req, res) => {
   });
 };
 
-const updateRole = (req, res) => {
+Controller.updateRole = (req, res) => {
   const { roleId } = req.params;
 
   Role.findByIdAndUpdate(roleId, req.body, { new: true }, (err, role) => {
@@ -70,7 +72,7 @@ const updateRole = (req, res) => {
   });
 };
 
-const deleteRole = (req, res) => {
+Controller.deleteRole = (req, res) => {
   const { roleId } = req.params;
   Role.findByIdAndRemove(roleId, (err, role) => {
     if (err) {
@@ -87,4 +89,4 @@ const deleteRole = (req, res) => {
   });
 };
 
-export default { getRole, getRoles, createRole, updateRole, deleteRole };
+module.exports = Controller;

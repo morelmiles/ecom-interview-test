@@ -1,6 +1,8 @@
 const Client = require("../models/Client");
 
-const createClient = (req, res) => {
+const Controller = {};
+
+Controller.createClient = (req, res) => {
   const newClient = new Client({
     displayName: req.body.displayName,
     address: req.body.address,
@@ -24,7 +26,7 @@ const createClient = (req, res) => {
   });
 };
 
-const getClients = (req, res) => {
+Controller.getClients = (req, res) => {
   Client.find({}).exec((err, clients) => {
     if (err) {
       return res.status(500).json({
@@ -39,7 +41,7 @@ const getClients = (req, res) => {
   });
 };
 
-const getClient = (req, res) => {
+Controller.getClient = (req, res) => {
   const { clientId } = req.params;
   Client.findById(clientId).exec((err, client) => {
     if (err) {
@@ -55,7 +57,7 @@ const getClient = (req, res) => {
   });
 };
 
-const updateClient = (req, res) => {
+Controller.updateClient = (req, res) => {
   const { clientId } = req.params;
 
   Client.findByIdAndUpdate(clientId, req.body, { new: true }, (err, client) => {
@@ -73,7 +75,7 @@ const updateClient = (req, res) => {
   });
 };
 
-const deleteClient = (req, res) => {
+Controller.deleteClient = (req, res) => {
   const { clientId } = req.params;
   Client.findByIdAndRemove(clientId, (err, client) => {
     if (err) {
@@ -90,10 +92,4 @@ const deleteClient = (req, res) => {
   });
 };
 
-export default {
-  createClient,
-  getClient,
-  getClients,
-  updateClient,
-  deleteClient,
-};
+module.exports = Controller;

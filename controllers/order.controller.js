@@ -1,7 +1,9 @@
 const Order = require("../models/Order");
 const Product = require("../models/Product");
 
-const getOrders = (req, res) => {
+const Controller = {};
+
+Controller.getOrders = (req, res) => {
   Order.find({})
     .populate("client")
     .populate("orderItems.product")
@@ -19,7 +21,7 @@ const getOrders = (req, res) => {
     });
 };
 
-const getOrder = (req, res) => {
+Controller.getOrder = (req, res) => {
   const { orderId } = req.params;
   Order.findById(orderId).exec((err, order) => {
     if (err) {
@@ -28,6 +30,7 @@ const getOrder = (req, res) => {
         err,
       });
     }
+
     res.json({
       ok: true,
       order,
@@ -67,7 +70,7 @@ const createOrder = (req, res) => {
   });
 };
 
-const deleteOrder = (req, res) => {
+Controller.deleteOrder = (req, res) => {
   const { orderId } = req.params;
   Order.findByIdAndRemove(orderId, (err, order) => {
     if (err) {
@@ -84,7 +87,7 @@ const deleteOrder = (req, res) => {
   });
 };
 
-const updateOrder = (req, res) => {
+Controller.updateOrder = (req, res) => {
   const { orderId } = req.params;
 
   Order.findByIdAndUpdate(orderId, req.body, { new: true }, (err, order) => {
@@ -102,7 +105,7 @@ const updateOrder = (req, res) => {
   });
 };
 
-const validateStock = (products, cb) => {
+Controller.validateStock = (products, cb) => {
   const products_id = [];
 
   const cartItems = [];
@@ -138,11 +141,4 @@ const validateStock = (products, cb) => {
     });
 };
 
-export default {
-  getOrders,
-  getOrder,
-  createOrder,
-  deleteOrder,
-  updateOrder,
-  validateStock,
-};
+module.export = Controller;

@@ -1,6 +1,8 @@
 const Category = require("./../models/Category");
 
-const createCategory = (req, res) => {
+const Controller = {};
+
+Controller.createCategory = (req, res) => {
   const newCategory = new Category({
     name: req.body.name,
     description: req.body.description,
@@ -23,7 +25,7 @@ const createCategory = (req, res) => {
   });
 };
 
-const getCategories = (req, res) => {
+Controller.getCategories = (req, res) => {
   Category.find({}).exec((err, categories) => {
     if (err) {
       return res.status(500).json({
@@ -38,7 +40,7 @@ const getCategories = (req, res) => {
   });
 };
 
-const getCategory = (req, res) => {
+Controller.getCategory = (req, res) => {
   const { categoryId } = req.params;
   Category.findById(categoryId).exec((err, category) => {
     if (err) {
@@ -54,7 +56,7 @@ const getCategory = (req, res) => {
   });
 };
 
-const updateCategory = (req, res) => {
+Controller.updateCategory = (req, res) => {
   const { categoryId } = req.params;
 
   Category.findByIdAndUpdate(
@@ -77,7 +79,7 @@ const updateCategory = (req, res) => {
   );
 };
 
-const deleteCategory = (req, res) => {
+Controller.deleteCategory = (req, res) => {
   const { categoryId } = req.params;
 
   Category.findByIdAndRemove(categoryId, (err, category) => {
@@ -95,10 +97,4 @@ const deleteCategory = (req, res) => {
   });
 };
 
-export default {
-  getCategory,
-  getCategories,
-  createCategory,
-  updateCategory,
-  deleteCategory,
-};
+module.exports = Controller
