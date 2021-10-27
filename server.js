@@ -20,7 +20,13 @@ const userRoutes = require("./routes/user.routes");
 const app = express();
 
 //Middleware
-app.use(cors);
+app.use(
+  cors({
+    credentials: true,
+    origin: true,
+  })
+);
+app.options("*", cors());
 app.use(express.json());
 app.use(helmet());
 app.use(express.json({ extended: true }));
