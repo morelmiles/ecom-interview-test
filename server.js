@@ -6,6 +6,8 @@ const mongoose = require("mongoose");
 const helmet = require("helmet");
 const compress = require("compression");
 const morgan = require("morgan");
+const swaggerUi = require("swagger-ui-express");
+const swaggerDocument = require("./swagger.json");
 
 const orderRoutes = require("./routes/order.routes");
 const productRoutes = require("./routes/product.routes");
@@ -24,6 +26,7 @@ app.use(helmet());
 app.use(express.json({ extended: true }));
 app.use(compress());
 app.use(morgan("dev"));
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 //Database connector
 mongoose.Promise = global.Promise;
